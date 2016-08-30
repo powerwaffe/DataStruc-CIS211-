@@ -12,6 +12,7 @@ public class Artist
 {
     private String artistName;
     private int artistID;
+    private int price;
 
     public Artist(int ID, String artist)
     {
@@ -77,5 +78,9 @@ public class Artist
 
         //for (int i = 0; i < items.length; i++)
             //System.out.println(items[i]);
+    }
+
+    public int getPrice() {
+        return price;
     }
 } // end Artist
