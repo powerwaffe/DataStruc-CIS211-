@@ -1,47 +1,57 @@
-package Project1;
+package Projects;
 
 import java.util.Arrays;
 
 /**
- A class of bags whose entries are stored in a fixed-size array.
- @author Frank M. Carrano
- @author Timothy M. Henry
- @version 4.0
+ * Created by Sean on 8/31/2016.
  */
-public final class ArrayBag<T> implements BagInterface<T>
+public final class ResizableArrayBag<T> implements BagInterface<T>
 {
-    private T[] bag;
+    private T[] bag; // Cannot be final due to doubling
     private int numberOfEntries;
     private boolean initialized = false;
-    private static int DEFAULT_CAPACITY = 5;
+    private static final int DEFAULT_CAPACITY = 25; // Initial capacity of bag
+    private static final int MAX_CAPACITY = 10000;
 
     /** Creates an empty bag whose initial capacity is 25. */
-    public ArrayBag()
+    public ResizableArrayBag()
     {
         this(DEFAULT_CAPACITY);
     } // end default constructor
 
-    /** Creates an empty bag having a given capacity.
-     @param desiredCapacity  The integer capacity desired. */
-    public ArrayBag(int desiredCapacity)
+    /** Creates an empty bag having a given initial capacity.
+     @param initialCapacity  The integer capacity desired. */
+    public ResizableArrayBag(int initialCapacity)
     {
+        checkCapacity(initialCapacity);
+
         // The cast is safe because the new array contains null entries
         @SuppressWarnings("unchecked")
-        T[] tempBag = (T[])new Object[desiredCapacity]; // Unchecked cast
+        T[] tempBag = (T[])new Object[initialCapacity]; // Unchecked cast
         bag = tempBag;
         numberOfEntries = 0;
         initialized = true;
     } // end constructor
 
+    /** Creates a bag containing given entries.
+     @param contents  An array of objects. */
+    public ResizableArrayBag(T[] contents)
+    {
+        checkCapacity(contents.length);
+        bag = Arrays.copyOf(contents, contents.length);
+        numberOfEntries = contents.length;
+        initialized = true;
+    } // end constructor
+
     /** Adds a new entry to this bag.
      @param newEntry  The object to be added as a new entry.
-     @return  True if the addition is successful, or false if not. */
+     @return  True. */
     public boolean add(T newEntry)
     {
         checkInitialization();
         if (isArrayFull())
         {
-            newCapacity();
+            doubleCapacity();
         } // end if
 
         bag[numberOfEntries] = newEntry;
@@ -49,14 +59,6 @@ public final class ArrayBag<T> implements BagInterface<T>
 
         return true;
     } // end add
-
-    /**Resize array and add three to capacity*/
-    private void newCapacity()
-    {
-        int newLength = bag.length * 2; //if array is full, add three to its capacity
-        bag = Arrays.copyOf(bag, newLength); //new resized bag
-        DEFAULT_CAPACITY += 3;
-    } //end newCapacity
 
     /** Retrieves all entries that are in this bag.
      @return  A newly allocated array of all the entries in this bag. */
@@ -67,15 +69,12 @@ public final class ArrayBag<T> implements BagInterface<T>
         // The cast is safe because the new array contains null entries.
         @SuppressWarnings("unchecked")
         T[] result = (T[])new Object[numberOfEntries]; // Unchecked cast
-
         for (int index = 0; index < numberOfEntries; index++)
         {
             result[index] = bag[index];
         } // end for
 
         return result;
-        // Note: The body of this method could consist of one return statement,
-        // if you call Arrays.copyOf
     } // end toArray
 
     /** Sees whether this bag is empty.
@@ -148,12 +147,6 @@ public final class ArrayBag<T> implements BagInterface<T>
         return anEntry.equals(result);
     } // end remove
 
-    // Returns true if the array bag is full, or false if not.
-    private boolean isArrayFull()
-    {
-        return numberOfEntries >= bag.length;
-    } // end isArrayFull
-
     // Locates a given entry within the array bag.
     // Returns the index of the entry, if located,
     // or -1 otherwise.
@@ -200,17 +193,34 @@ public final class ArrayBag<T> implements BagInterface<T>
         return result;
     } // end removeEntry
 
-    // Throws an exception if this object is not initialized.
-    private void checkInitialization()
+    // Returns true if the array bag is full, or false if not.
+    public boolean isArrayFull()
     {
-        if (!initialized)
-            throw new SecurityException("ArrayBag object is not initialized properly.");
-    } // end checkInitialization
+        return numberOfEntries >= bag.length;
+    } // end isArrayFull
 
+    // Doubles the size of the array bag.
+    // Precondition: checkInitialization has been called.
     private void doubleCapacity()
     {
         int newLength = 2 * bag.length;
-        //checkCapacity(newLength);
+        checkCapacity(newLength);
         bag = Arrays.copyOf(bag, newLength);
     } // end doubleCapacity
-} // end ArrayBag
+
+    // Throws an exception if the client requests a capacity that is too large.
+    private void checkCapacity(int capacity)
+    {
+        if (capacity > MAX_CAPACITY)
+            throw new IllegalStateException("Attempt to create a bag whose capacity exceeds " +
+                    "allowed maximum of " + MAX_CAPACITY);
+    } // end checkCapacity
+
+    // Throws an exception if receiving object is not initialized.
+    private void checkInitialization()
+    {
+        if (!initialized)
+            throw new SecurityException ("Uninitialized object used " +
+                    "to call an ArrayBag method.");
+    } // end checkInitialization
+} // end ResizableArrayBag

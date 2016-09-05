@@ -1,4 +1,4 @@
-package Project1; /**
+package pjc1; /**
  * Created by Sean on 8/30/2016.
  */
 

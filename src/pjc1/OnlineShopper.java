@@ -1,4 +1,4 @@
-package Project1;
+package pjc1;
 
 /** A class that maintains a shopping cart for an online store.
  @author Frank M. Carrano

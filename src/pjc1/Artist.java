@@ -1,4 +1,4 @@
-package Project1;
+package pjc1;
 
 import java.io.File;
 import java.io.FileNotFoundException;

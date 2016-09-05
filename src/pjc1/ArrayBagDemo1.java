@@ -1,4 +1,4 @@
-package Project1;
+package pjc1;
 
 /** A demonstration of the class ArrayBag
  @author Frank M. Carrano

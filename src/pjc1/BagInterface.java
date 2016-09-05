@@ -1,4 +1,4 @@
-package Project1;
+package pjc1;
 
 /**
  An interface that describes the operations of a bag of objects.
