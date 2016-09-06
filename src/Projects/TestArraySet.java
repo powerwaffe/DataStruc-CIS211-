@@ -5,9 +5,10 @@ import java.util.Set;
 /**
  * Created by Sean on 9/5/2016.
  */
-public class TestArraySet {
-    public static void main(String[] args) {
-        //ArraySet arraySet = new ArraySet();
+public class TestArraySet
+{
+    public static void main(String[] args)
+    {
         //create string array to test set
         String[] contentsOfSet = {"A", "B", "C", "D", "E", "F"};
 
@@ -36,9 +37,25 @@ public class TestArraySet {
 
         System.out.println("Testing to add duplicate string to set:");
         testAdd(aSet, testString2);
-    }
 
-    private static void testIsEmpty(SetInterface<String> aSet, boolean correctResult) {
+        //Add more strings to set
+        String[] testString3 = {"Y", "X", "Z"};
+        testAdd(aSet, testString3);
+
+        //Removing an entry from set
+        System.out.println("Removing an entry from set:");
+        aSet.remove();
+        displaySet(aSet);
+
+        //Clear set
+        System.out.println("Removing all strings from set:");
+        aSet.clear();
+        testIsEmpty(aSet, true);
+        displaySet(aSet);
+    } //end main
+
+    private static void testIsEmpty(SetInterface<String> aSet, boolean correctResult)
+    {
         System.out.print("Testing isEmpty with ");
         if (correctResult)
             System.out.println("an empty set:");
@@ -57,15 +74,18 @@ public class TestArraySet {
         System.out.println();
     } //end testIsEmpty
 
-    private static void testContains(SetInterface<String> aSet, String[] tests) {
+    private static void testContains(SetInterface<String> aSet, String[] tests)
+    {
         System.out.println("\nTesting the method contains:");
         for (int index = 0; index < tests.length; index++)
             System.out.println("Does this bag contain " + tests[index] +
                     "? " + aSet.contains(tests[index]));
     } // end testContains
 
-    private static void testAdd(SetInterface<String> aSet, String[] content) {
-        for (int index = 0; index < content.length; index++) {
+    private static void testAdd(SetInterface<String> aSet, String[] content)
+    {
+        for (int index = 0; index < content.length; index++)
+        {
             if(aSet.contains(content[index]))
             {
                 System.out.println("Already in set, cannot add duplicates.");
@@ -104,11 +124,13 @@ public class TestArraySet {
         } // end for
     } // end testRemove
 
-    private static void displaySet(SetInterface<String> aSet) {
+    private static void displaySet(SetInterface<String> aSet)
+    {
         System.out.println("The set contains " + aSet.getCurrentSize() +
                 " string(s), as follows:");
         Object[] setArray = aSet.toArray();
-        for (int index = 0; index < setArray.length; index++) {
+        for (int index = 0; index < setArray.length; index++)
+        {
             System.out.print(setArray[index] + " ");
         } // end for
         System.out.println("\n");

@@ -5,7 +5,8 @@ import java.util.NoSuchElementException;
 /**
  * Created by Sean on 8/31/2016.
  */
-public final class ArraySet<T> implements SetInterface<T> {
+public final class ArraySet<T> implements SetInterface<T>
+{
     private T[] bag; // Cannot be final due to doubling
     private int numberOfEntries;
     private boolean initialized = false;
@@ -14,31 +15,37 @@ public final class ArraySet<T> implements SetInterface<T> {
     private final int NOT_FOUND = -1;
     public ResizableArrayBag resizableArrayBag = new ResizableArrayBag(); //create object to be called
 
-    public ArraySet(ResizableArrayBag ResizeBag) {
+    public ArraySet(ResizableArrayBag ResizeBag)
+    {
         this.resizableArrayBag = resizableArrayBag;
     } //end constructor
 
-    public ArraySet() {
+    public ArraySet()
+    {
         this(DEFAULT_CAPACITY);
     } //end default constructor
 
-    public ArraySet(int initialCapacity) {
+    public ArraySet(int initialCapacity)
+    {
         T[] tempBag = (T[]) new Object[initialCapacity];
         bag = tempBag;
         numberOfEntries = 0;
         initialized = true;
     } //end constructor
 
-    public int getCurrentSize() {
+    public int getCurrentSize()
+    {
         return resizableArrayBag.getCurrentSize();
     }
      //end getCurrentSize
 
-    public boolean isEmpty() {
+    public boolean isEmpty()
+    {
         return resizableArrayBag.isEmpty();
     } //end isEmpty
 
-    public boolean add(T newEntry) {
+    public boolean add(T newEntry)
+    {
         /**if(contains(newEntry))
             return false;
         bag[numberOfEntries] = newEntry;
@@ -88,8 +95,9 @@ public final class ArraySet<T> implements SetInterface<T> {
         return resizableArrayBag.remove(anEntry);
     } //end remove
 
-    public T remove() {
-        T result = null;
+    public T remove()
+    {
+        /**T result = null;
         if(numberOfEntries > 0)
         {
             result = bag[numberOfEntries - 1];
@@ -97,17 +105,22 @@ public final class ArraySet<T> implements SetInterface<T> {
             numberOfEntries--;
         }
         return result;
+         */
+        return (T) resizableArrayBag.remove();
     } //end remove
 
-    public void clear() {
+    public void clear()
+    {
         resizableArrayBag.clear();
     } //end clear
 
-    public boolean contains(T anEntry) {
+    public boolean contains(T anEntry)
+    {
         return resizableArrayBag.contains(anEntry);
     } //end contains
 
-    public T[] toArray() {
+    public T[] toArray()
+    {
         return (T[])resizableArrayBag.toArray();
     } //end toArray
 } //end ArraySet
