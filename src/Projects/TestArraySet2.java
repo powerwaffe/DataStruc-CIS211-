@@ -1,8 +1,9 @@
 package Projects;
+
 /**
- * Created by Sean on 9/5/2016.
+ * Created by Sean on 9/8/2016.
  */
-public class TestArraySet
+public class TestArraySet2
 {
     public static void main(String[] args)
     {
@@ -10,7 +11,7 @@ public class TestArraySet
         String[] contentsOfSet = {"A", "B", "C", "D", "E", "F"};
 
         //Test on an empty set
-        SetInterface<String> aSet = new ArraySet<>(contentsOfSet.length);
+        SetInterface<String> aSet = new ArraySet2<>(contentsOfSet.length);
         System.out.println("Testing an initially empty bag:");
         testIsEmpty(aSet, true);
 
@@ -133,3 +134,4 @@ public class TestArraySet
         System.out.println("\n");
     } //end displaySet
 }
+
