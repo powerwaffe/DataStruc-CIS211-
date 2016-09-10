@@ -1,4 +1,6 @@
-package Chapter3;
+package Chapter3Project5;
+
+import Chapter3.BagInterface;
 
 /**
  * Created by Sean on 9/8/2016.
@@ -95,7 +97,7 @@ public final class LinkedBag<T> implements BagInterface<T>
         if(nodeN != null)
         {
             nodeN.data = firstNode.data;    //Replace located entry with entry
-            //in first node
+                                            //in first node
             firstNode = firstNode.next;     //Remove first node
             numberOfEntries--;
             result = true;

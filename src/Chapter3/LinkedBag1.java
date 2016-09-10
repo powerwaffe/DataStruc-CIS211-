@@ -1,14 +1,14 @@
 package Chapter3;
 
 /**
- * Created by Sean on 9/8/2016.
+ * Created by Sean on 9/9/2016.
  */
-public final class LinkedBag<T> implements BagInterface<T>
+public final class LinkedBag1<T> implements BagInterface<T>
 {
     private Node firstNode;       //Reference to first node
     private int numberOfEntries;
 
-    public LinkedBag()
+    public LinkedBag1()
     {
         firstNode = null;
         numberOfEntries = 0;
@@ -22,7 +22,7 @@ public final class LinkedBag<T> implements BagInterface<T>
         //Add to beginning of chain:
         Node newNode = new Node(newEntry);
         newNode.setNextNode(firstNode);  //Make new node reference rest of chain
-        //(firstNode is null if chain is empty)
+                                         //(firstNode is null if chain is empty)
         firstNode = newNode;             //New node is at beginning of chain
         numberOfEntries++;
 
@@ -97,7 +97,6 @@ public final class LinkedBag<T> implements BagInterface<T>
             nodeN.data = firstNode.data;    //Replace located entry with entry
             //in first node
             firstNode = firstNode.next;     //Remove first node
-            numberOfEntries--;
             result = true;
         } //end if
 
@@ -198,4 +197,4 @@ public final class LinkedBag<T> implements BagInterface<T>
             next = nextNode;
         } //end setNextNode
     } //end Node
-} //end LinkedBag
+} //end LinkedBag1
