@@ -1,7 +1,4 @@
 package Chapter3Project5;
-
-import Chapter3.BagInterface;
-
 /**
  * Created by Sean on 9/8/2016.
  */
@@ -68,7 +65,7 @@ public final class LinkedBag<T> implements BagInterface<T>
     } //end getCurrentSize
 
     public boolean isArrayFull() {
-        return false;
+        return false; //STUB
     }
 
     /**Removes one unspecified entry from this bag, if possible.
@@ -159,10 +156,10 @@ public final class LinkedBag<T> implements BagInterface<T>
 
         while(!found && (currentNode != null))
         {
-            if(anEntry.equals(currentNode.getNextNode()))
+            if(anEntry.equals(currentNode.data))
                 found = true;
             else
-                currentNode = currentNode.getNextNode();
+                currentNode = currentNode.next;
         } //end while
 
         return currentNode;

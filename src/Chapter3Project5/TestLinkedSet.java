@@ -12,15 +12,17 @@ public class TestLinkedSet
         SetInterface<String> aSet = new LinkedSet<>();
         System.out.println("Testing an initially empty bag:");
         testIsEmpty(aSet, true);
+
         //Test if set contains an item
         String[] testStrings1 = {"A", "B"};
         testContains(aSet, testStrings1);
 
         //Test adding to an initially empty set
-        System.out.println("Adding " + contentsOfSet.length + " strings to an initially empty linked set ");
+        System.out.println("\nAdding " + contentsOfSet.length + " strings to an initially empty linked set ");
         testAdd(aSet, contentsOfSet);
 
         //Test removing a strings from linked set
+        System.out.println("Testing the removal of an unspecified entry from the linked set");
         String[] testStrings2 = {""};
         testRemove(aSet, testStrings2);
 
@@ -28,9 +30,16 @@ public class TestLinkedSet
         String[] testStrings3 = {"B"};
         testRemove(aSet, testStrings3);
 
+        //Try adding duplicate string
+        System.out.println("Trying to add duplicate string to linked set:");
+        String[] testStrings4 = {"C"};
+        testAdd(aSet, testStrings4);
 
-    }
-
+        //Clear linked set
+        System.out.println("Removing all strings from linked set:");
+        aSet.clear();
+        displaySet(aSet);
+    } //end main
 
     private static void testIsEmpty(SetInterface<String> aSet, boolean correctResult)
     {
@@ -87,14 +96,14 @@ public class TestLinkedSet
             if (aString.equals("") || (aString == null))
             {
                 // test remove()
-                System.out.println("\nRemoving a string from the set:");
+                System.out.println("Removing a string from the set:");
                 String removedString = aSet.remove();
                 System.out.println("remove() returns " + removedString);
             }
             else
             {
                 // test remove(aString)
-                System.out.println("\nRemoving \"" + aString + "\" from the set:");
+                System.out.println("Removing \"" + aString + "\" from the set:");
                 boolean result = aSet.remove(aString);
                 System.out.println("remove(\"" + aString + "\") returns " + result);
             } // end if
@@ -113,4 +122,4 @@ public class TestLinkedSet
         } // end for
         System.out.println("\n");
     } //end displaySet
-}
+} //end TestLinkedSet
