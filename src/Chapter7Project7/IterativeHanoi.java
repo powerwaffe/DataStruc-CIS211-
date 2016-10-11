@@ -10,20 +10,21 @@ public class IterativeHanoi
     public static void TowersOfHanoi(int numberOfDisks, String startPole, String tempPole, String endPole)
     {
         //while (numberOfDisks > 0)
-        for (int i = numberOfDisks; i > 0; i--)
+        //for (int i = numberOfDisks; i > 0; i--)
+        if (numberOfDisks > 0)
         {
             /** MUST GO 1, 3, 2, 1 */
             //System.out.println(startPole + "-" + tempPole + "-" + endPole);
             //System.out.println(startPole + " -> " + endPole + " 1");
             TowersOfHanoi(numberOfDisks - 1, startPole, endPole, tempPole);
-            System.out.println(startPole + " -> " + endPole + " 1");
-            endPole = startPole;
-            startPole = tempPole;
-            numberOfDisks = numberOfDisks - 1;
-            //i--;
-
+            System.out.println(startPole + " -> " + endPole);
+            TowersOfHanoi(numberOfDisks - 1, tempPole, startPole, endPole);
+            //endPole = startPole;
+            //startPole = tempPole;
+            //numberOfDisks = numberOfDisks - 1;
+            //i--
         }
-        System.out.println("End loop");
+        //System.out.println("End loop");
     }
 
     public static void main(String[] args)

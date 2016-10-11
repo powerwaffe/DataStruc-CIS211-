@@ -12,21 +12,33 @@ public class HanoiIterative
      * @param startPole First pole.
      * @param tempPole Second pole.
      * @param endPole Third pole. */
-    private static void solveTowers(int numberOfDisks, int startPole, int endPole, int tempPole)
+    public static void TowersOfHanoi(int numberOfDisks,
+                                     String startPole, String tempPole, String endPole)
     {
         while (numberOfDisks > 0)
         {
-            solveTowers(numberOfDisks - 1, startPole, endPole, tempPole);
+            System.out.println("START LOOP");
+            /** MUST GO 1, 3, 2, 1 */
+            TowersOfHanoi(numberOfDisks - 1, startPole, endPole, tempPole);
+            System.out.println(startPole + " -> " + endPole);
             numberOfDisks = numberOfDisks - 1;
-            startPole = tempPole;
             tempPole = startPole;
-            endPole = endPole;
-        } // end while
-       // System.out.printf("%d -> %d\n", startPole, endPole);
-    } //end solveTowers
+            //tempPole = startPole;
+            System.out.println("END LOOP");
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        //DemoIterative demoIterative = new DemoIterative();
+        System.out.println("Enter amount of discs: ");
+        Scanner scanner = new Scanner(System.in);
+        int discs = scanner.nextInt();
+        TowersOfHanoi(discs, "A", "B", "C");
+    } // end of main
 
     /** Returns the disk to be moved currently */
-    public static void getDisc()
+    /**public static void getDisc()
     {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter number of disks:");
@@ -38,4 +50,5 @@ public class HanoiIterative
     {
         getDisc();
     } // end main
+     */
 }
