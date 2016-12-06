@@ -1,0 +1,21 @@
+Animal
+1 Can this animal swim?
+0 Is it a horse??
+1 Can this animal jump high?
+0 Is it a Bear?
+1 Does it run fast?
+0 Is it a turtle?
+1 Does this animal roar?
+0 Is it a cat?
+1 Is this animal nocturnal?
+0 Is it a Duck
+1 Is this animal a carnivore?
+0 Is it a Deer?
+1 Is this animal aggressive?
+0 Is it a Ferret?
+1 Does it have a horn?
+0 Is it a beaver?
+1 Does this animal screech?
+0 Is it a wolf?
+0 Is it a bat?
+

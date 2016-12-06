@@ -1,0 +1,20 @@
+1 Can this animal swim
+0 Horse
+1 Does this animal walk on four legs
+0 Penguin
+1 Is this animal fast
+0 Turtle
+1 Is this animal mainly found in the wilderness
+0 Cat
+1 Is this animal aggressive
+0 Beaver
+1 Is this animal a carnivore
+0 Hippopotamus
+1 Is this animal territorial
+0 Monkey
+1 Is this animal nocturnal
+0 Cheetah
+1 Does this animal hunt in packs
+0 Crocodile
+0 Wolf
+

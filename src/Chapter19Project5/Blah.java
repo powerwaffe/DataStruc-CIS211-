@@ -1,11 +1,14 @@
 package Chapter19Project5;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * Created by Sean on 12/5/2016.
  */
-public class PhysicianHelper
+public class Blah
 {
     // Map to be used
     private static Map<String, List<String>> map = new HashMap<>();
@@ -28,11 +31,32 @@ public class PhysicianHelper
         put(map, "Flu", "Coughing");
         put(map, "Flu", "Chills");
         put(map, "Flu", "Fatigue");
-        put(map, "Cold", "Coughing");
 
-        int keepGoing = 1; // Variable used to continue or exit loop
+        int keepGoing = 1;
+
         while (keepGoing == 1)
         {
+            // Must edit filepath or FileNotFound exception will be thrown
+            //String fileName = "C:\\Users\\Sean\\IdeaProjects\\DataStruc [CIS211]\\src\\Chapter19Project5\\Data.txt";
+
+            /**try
+             {
+             Scanner data = new Scanner(new File(fileName));
+             readFile(data);
+
+             map.forEach((s, strings) ->
+             {
+             System.out.print(s + ": ");
+             System.out.println(strings.stream().collect(Collectors.joining(", ")));
+             });
+             }
+             catch (FileNotFoundException e)
+             {
+             System.out.println("File not found: " + e.getMessage());
+             }
+             */
+            //remove(map, "Headache", "Head pain");
+
             // Print illness and symptom map
             map.forEach((s, strings) ->
             {
@@ -40,7 +64,6 @@ public class PhysicianHelper
                 System.out.println(strings.stream().collect(Collectors.joining(", ")));
             });
 
-            // Illness and symptom selection menu
             System.out.println("\nWould you like to add(1) or remove(2) a symptom to an existing illness?");
             System.out.println("(1) - To add a symptom");
             System.out.println("(2) - To remove a symptom");
@@ -55,22 +78,8 @@ public class PhysicianHelper
                 System.out.println("Now type in the symptom you would like to add");
                 newSymptom = input.nextLine();
 
-
-                System.out.println(searchMap((HashMap) map, newSymptom));
                 // Place new symptom into map
                 put(map, illnessSelection, newSymptom);
-
-                /**for(String key : map.keySet())
-                {
-                    List<String> value = map.get(key);
-
-                    if(newSymptom.equals(value))
-                    {
-                        String keyAndValue = key + value; // this is what you want
-                        System.out.println(keyAndValue + " FLAFLASLFDASD");
-                    }
-                }*/
-
             }
             else if (response.equals("2"))
             {
@@ -85,20 +94,21 @@ public class PhysicianHelper
             }
             else
             {
-                keepGoing = 0; // Exit loop and program
+                // Exit loop and program
+                keepGoing = 0;
             }
         } // end while loop
     } // end main
 
-    /** Method will add a value to a existing key or create a key and a value to amp */
+    // Adds value to map
     private static <KEY, VALUE> void put(Map<KEY, List<VALUE>> map, KEY key, VALUE value)
     {
         map.compute(key, (s, strings) -> strings == null ? new ArrayList<>() : strings).add(value);
     } // end put
 
-    /** Method will remove a given value from a given key of a map */
+    // Removes value from map
     private static boolean remove(Map<String, List<String>> map,
-                                  String key, String value)
+                                               String key, String value)
     {
         List<String> existingValues = map.get(key);
         if (existingValues != null)
@@ -108,10 +118,9 @@ public class PhysicianHelper
         return false;
     } // end remove
 
-    /** Will read a text file data
-     * NOT IMPLEMENTED YET! */
     public static void readFile(Scanner data)
     {
+        //Map<String, List<String>> map = new HashMap<>();
         while (data.hasNext())
         {
             String line = data.nextLine();
@@ -127,18 +136,5 @@ public class PhysicianHelper
             put(map, illness, symptomList);
         }
         data.close();
-    } // end readFile
-
-    public static ArrayList < String > searchMap ( HashMap map, String value )
-    {
-        ArrayList < String > matchesFound = new ArrayList < String >();
-        Iterator it = map.entrySet().iterator();
-        while ( it.hasNext() )
-        {
-            Map.Entry entry = (Map.Entry) it.next();
-            if ( entry.getValue() == value )
-                matchesFound.add( entry.getKey() + " : " + entry.getValue() );
-        }
-        return matchesFound;
     }
-} // end PhysicianHelper
+} // end Blah
